@@ -1,0 +1,42 @@
+{
+    "name": "moust/prestashop-webservice",
+    "description": "PHP wrapper for Prestashop web service",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Quentin Aupetit",
+            "email": "quentin@cellules.tv"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "PrestaShop/PrestaShop-webservice-lib",
+                "version": "1.0.0",
+                "source": {
+                    "url": "https://github.com/PrestaShop/PrestaShop-webservice-lib.git",
+                    "type": "git",
+                    "reference": "2fd9321"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*",
+        "PrestaShop/PrestaShop-webservice-lib": "*",
+        "doctrine/cache": "@stable"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "PrestashopWebservice": "src/"
+        },
+        "files": [
+            "vendor/PrestaShop/PrestaShop-webservice-lib/PSWebServiceLibrary.php"
+        ]
+    }
+}
