@@ -21,7 +21,7 @@ PHP wrapper for Prestashop web service
 // initialize WebService
 $webservice = new Webservice('http://mystore.com/', 'your-prestashop-api-key', false);
 
-// initialize CacheProvider
+// initialize CacheProvider (optional)
 $cache = new Doctrine\Common\Cache\PhpFileCache(__DIR__.'/cache');
 $webservice->setCacheProvider($cache);
 $webservice->setTtl(60);
