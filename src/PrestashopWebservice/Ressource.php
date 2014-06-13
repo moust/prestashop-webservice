@@ -12,6 +12,11 @@ class Ressource
         $this->ressource = $xml;
     }
 
+    public function __isset($name)
+    {
+        return !!count($this->ressource->xpath($name));
+    }
+
     public function __get($name)
     {
         $node = $this->ressource->{$name};
