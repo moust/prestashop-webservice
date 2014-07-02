@@ -21,19 +21,18 @@ class Ressource
     {
         $node = $this->ressource->{$name};
 
-        return $this->parseNode($node);
+        if ($node) {
+            return $this->parseNode($node);
+        }
     }
 
     protected function parseNode($node)
     {
         if (count($node->children())) {
 
-            // $children = array();
             $children = new \stdClass();
 
             foreach ($node->children() as $child) {
-                // echo $child->getName() .'<br />';
-
                 if ($child->attributes()->node_type) {
                     $children->{$child->getName()} = array();
                     $node_type = (string) $child->attributes()->node_type;
