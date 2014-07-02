@@ -110,7 +110,8 @@ class Webservice
         $collection = array();
 
         foreach ($xml->{$resource}->children() as $node) {
-            $collection[] = new Ressource($node);
+            $ressource = new Ressource($node);
+            $collection[$ressource->id] = $ressource;
         }
 
         return $collection;
@@ -128,6 +129,7 @@ class Webservice
      **/
     public function getCategory($id)
     {
-        return $this->getOne('categorie', $id);
+        $xml = $this->get(array('resource' => 'categories', 'id' => $id));
+        return new Ressource($xml->category);
     }
 }
