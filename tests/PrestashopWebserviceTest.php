@@ -9,7 +9,7 @@ class PrestashopWebserviceTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->webservice = new Webservice('http://dev.aureliebidermann.com:8888/', '1BSZHTAZ1PVVRP4186AX9KQP6QB2GLFL', false);
+        $this->webservice = new Webservice('http://192.168.0.42:8888/aurelieb/', '1BSZHTAZ1PVVRP4186AX9KQP6QB2GLFL', false);
     }
 
     public function testInstance()
@@ -59,6 +59,16 @@ class PrestashopWebserviceTest extends \PHPUnit_Framework_TestCase
                 $this->assertContainsOnly('string', $product->associations->images);
             }
         }
+    }
+
+    /**
+     * @expectedException PrestaShopWebserviceException
+     **/
+    public function testGetProductNotFound()
+    {
+        $product = $this->webservice->getProduct(99999);
+
+        $this->assertFalse($product);
     }
 
     /**

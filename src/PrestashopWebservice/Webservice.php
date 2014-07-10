@@ -55,7 +55,12 @@ class Webservice
             return $data;
         }
 
-        $data = $this->webservice->get($options);
+        try {
+            $data = $this->webservice->get($options);
+        }
+        catch (PrestaShopWebserviceException $e) {
+            return false;
+        }
 
         if ($this->getCacheProvider()) {
             $this->getCacheProvider()->save($id, $data->asXML(), $this->getTtl());
@@ -119,8 +124,10 @@ class Webservice
 
     public function getOne($resource, $id)
     {
-        $xml = $this->get(array('resource' => $resource.'s', 'id' => $id));
-        return new Ressource($xml->{$resource});
+        if ($xml = $this->get(array('resource' => $resource.'s', 'id' => $id))) {
+            return new Ressource($xml->{$resource});
+        }
+        return false;
     }
 
 
@@ -129,7 +136,9 @@ class Webservice
      **/
     public function getCategory($id)
     {
-        $xml = $this->get(array('resource' => 'categories', 'id' => $id));
-        return new Ressource($xml->category);
+        if ($xml = $this->get(array('resource' => 'categories', 'id' => $id))) {
+            return new Ressource($xml->category);
+        }
+        return false;
     }
 }
