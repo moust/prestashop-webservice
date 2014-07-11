@@ -36,7 +36,7 @@
             "PrestashopWebservice": "src/"
         },
         "files": [
-            "/PrestaShop/PrestaShop-webservice-lib/PSWebServiceLibrary.php"
+            "../../PrestaShop/PrestaShop-webservice-lib/PSWebServiceLibrary.php"
         ]
     }
 }
