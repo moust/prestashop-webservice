@@ -6,6 +6,8 @@ use PrestashopWebservice\Ressource;
 use PrestaShopWebservice;
 use PrestaShopWebserviceException;
 
+use Psr\Log\LoggerInterface;
+
 use Doctrine\Common\Cache\CacheProvider;
 
 class Webservice
@@ -15,6 +17,8 @@ class Webservice
     private $cache;
 
     private $ttl = 60;
+
+    private $logger;
 
     public function __construct($url, $key, $debug = true)
     {
@@ -41,6 +45,16 @@ class Webservice
         return $this->ttl;
     }
 
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
     public function add($options)
     {
         return $this->webservice->add($options);
@@ -59,6 +73,9 @@ class Webservice
             $data = $this->webservice->get($options);
         }
         catch (PrestaShopWebserviceException $e) {
+            if ($this->getLogger()) {
+                $this->getLogger()->error($e->getMessage(), $options);
+            }
             return false;
         }
 
