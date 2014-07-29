@@ -131,9 +131,11 @@ class Webservice
 
         $collection = array();
 
-        foreach ($xml->{$resource}->children() as $node) {
-            $ressource = new Ressource($node);
-            $collection[$ressource->id] = $ressource;
+        if ($xml) {
+            foreach ($xml->{$resource}->children() as $node) {
+                $ressource = new Ressource($node);
+                $collection[$ressource->id] = $ressource;
+            }
         }
 
         return $collection;
