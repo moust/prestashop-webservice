@@ -13,11 +13,11 @@
             "type": "package",
             "package": {
                 "name": "PrestaShop/PrestaShop-webservice-lib",
-                "version": "1.0.0",
+                "version": "master",
                 "source": {
                     "url": "https://github.com/PrestaShop/PrestaShop-webservice-lib.git",
                     "type": "git",
-                    "reference": "2fd9321"
+                    "reference": "master"
                 }
             }
         }
@@ -25,11 +25,15 @@
     "require": {
         "php": ">=5.3.3",
         "ext-curl": "*",
-        "PrestaShop/PrestaShop-webservice-lib": "*",
-        "doctrine/cache": "@stable"
+        "PrestaShop/PrestaShop-webservice-lib": "master",
+        "doctrine/cache": "~1.0",
+        "psr/log": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7"
+    },
+    "suggest": {
+        "monolog/monolog": "Allows more advanced logging of the application flow"
     },
     "autoload": {
         "psr-0": {
