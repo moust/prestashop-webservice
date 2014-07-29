@@ -13,11 +13,11 @@
             "type": "package",
             "package": {
                 "name": "PrestaShop/PrestaShop-webservice-lib",
-                "version": "dev-master",
+                "version": "master",
                 "source": {
                     "url": "https://github.com/PrestaShop/PrestaShop-webservice-lib.git",
                     "type": "git",
-                    "reference": "dev-master"
+                    "reference": "master"
                 }
             }
         }
