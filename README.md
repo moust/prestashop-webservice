@@ -26,6 +26,12 @@ $cache = new Doctrine\Common\Cache\PhpFileCache(__DIR__.'/cache');
 $webservice->setCacheProvider($cache);
 $webservice->setTtl(60);
 
+// initialize Logger with Monolog (optional)
+$logger = new Monolog\Logger('prestashop');
+$handler = new Monolog\Handler\StreamHandler(__DIR__.'/logs/prestashop.log');
+$logger->pushHandler($handler);
+$webservice->setLogger($logger);
+
 $products = $webservice->getProducts();
 
 echo '<ul>';
